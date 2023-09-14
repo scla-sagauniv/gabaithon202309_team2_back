@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: "edd2023-swagger"
+    ports:
+      - "8002:8080"
+    volumes:
+      - ./docs/swagger.yaml:/openapi.yaml
+    environment:
+      SWAGGER_JSON: /openapi.yaml

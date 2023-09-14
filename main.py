@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -15,12 +16,25 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+class Word(BaseModel):
+    word: str
+
+class Choiced(BaseModel):
+    word:str
+    attribute:str
+    choiced:bool
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
 @app.post("/word")
-async def root1():
-    return {"message": "Word"}
+async def root1(word: Word):
+    word.word = "res-" + word.word
+    return word
 @app.post("/choiced")
-async def root2():
-    return {"message": "Choiced"}
+async def root2(word: Choiced):
+    return word
+async def root3(attribute: Choiced):
+    return attribute
+async def root4(choiced: Choiced):
+    return choiced

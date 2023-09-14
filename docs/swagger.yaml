@@ -4,6 +4,8 @@ info:
   title: ideer
 servers:
   - url: 'http://localhost:8000'
+  - url: 'http://localhost:4010'
+    description: ''
 paths:
   /word:
     post:
@@ -23,6 +25,8 @@ paths:
                 $ref: '#/components/schemas/Attribute'
       servers:
         - url: 'http://localhost:8000'
+        - url: 'http://localhost:4010'
+          description: ''
   /choiced:
     post:
       summary: Create New User
@@ -74,6 +78,8 @@ paths:
           description: Email Already Taken
       servers:
         - url: 'http://localhost:8000'
+        - url: 'http://localhost:4010'
+          description: ''
 components:
   schemas:
     Word:

@@ -9,3 +9,6 @@ pipenv install
 pipenv run dev
 # http://localhost:8000　にアクセス
 ```
+
+## API Doc
+https://scla-sagauniv.github.io/gabaithon202309_team2_back/dist/

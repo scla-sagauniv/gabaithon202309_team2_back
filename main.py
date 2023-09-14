@@ -32,9 +32,5 @@ async def root1(word: Word):
     word.word = "res-" + word.word
     return word
 @app.post("/choiced")
-async def root2(word: Choiced):
-    return word
-async def root3(attribute: Choiced):
-    return attribute
-async def root4(choiced: Choiced):
+async def root2(choiced: Choiced):
     return choiced

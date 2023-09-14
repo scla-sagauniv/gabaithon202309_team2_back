@@ -32,6 +32,14 @@ class Choiced(BaseModel):
     attribute:str
     choiced:bool
 
+class ResWord(BaseModel):
+    word:str
+def getResTword(word,attribute: str) -> ResWord:
+    return ResWord(word=model.most_similar(positive=[word,attribute])[0][0])
+def getResFword(word,attribute: str) -> ResWord:
+    return ResWord(word=model.most_similar(positive=[word], negative=[attribute])[0][0])
+
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -41,4 +49,8 @@ async def root1(word: Word):
     return attr
 @app.post("/choiced")
 async def root2(choiced: Choiced):
-    return choiced
+    if choiced.choiced:
+        word=getResFword(word=choiced.word,attribute=choiced.attribute)
+    else:
+        word=getResTword(word=choiced.word,attribute=choiced.attribute)
+    return word

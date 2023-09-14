@@ -2,7 +2,16 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import gensim
-model = gensim.models.KeyedVectors.load_word2vec_format('models/demo2.txt', binary=False)
+from dotenv import load_dotenv
+import os
+from os.path import join, dirname
+
+load_dotenv(verbose=True)
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+model = gensim.models.KeyedVectors.load_word2vec_format(os.environ.get("MODEL_PATH"), binary=False)
 
 app = FastAPI()
 

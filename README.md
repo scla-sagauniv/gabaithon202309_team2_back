@@ -12,3 +12,9 @@ pipenv run dev
 
 ## API Doc
 https://scla-sagauniv.github.io/gabaithon202309_team2_back/dist/
+
+## mockup
+```
+yarn global add @stoplight/prism-cli
+prism mock docs/swagger.yaml
+```

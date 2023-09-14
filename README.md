@@ -1,5 +1,11 @@
 # gabaithon202309_team2_back
 
+## Start Up with Docker
+```bash
+docker compose up python
+docker compose exec python bash
+# 色々実行
+```
 ## Start Up
 Windowsの人はWSL上で行うことをお勧めします
 ```bash

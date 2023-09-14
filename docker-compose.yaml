@@ -3,10 +3,19 @@ version: "3.7"
 services:
   swagger-ui:
     image: swaggerapi/swagger-ui
-    container_name: "edd2023-swagger"
+    container_name: "gabaithon2309-swagger"
+    
     ports:
       - "8002:8080"
     volumes:
       - ./docs/swagger.yaml:/openapi.yaml
     environment:
       SWAGGER_JSON: /openapi.yaml
+  python:
+    image: python:3.8
+    container_name: gabaithon2309-python
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    command: /bin/bash -c "cd /app && pip3 install -r requirements.txt && uvicorn main:app --reload"

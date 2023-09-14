@@ -1,2 +1,4 @@
 models
 .vscode
+
+__pycache__

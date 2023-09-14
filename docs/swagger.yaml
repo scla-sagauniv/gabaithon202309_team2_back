@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  version: '1.0'
+  title: ideer
+servers:
+  - url: 'http://localhost:8000'
+paths:
+  /word:
+    post:
+      summary: ''
+      operationId: post-word
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Word'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attribute'
+      servers:
+        - url: 'http://localhost:8000'
+  /choiced:
+    post:
+      summary: Create New User
+      description: Create a new user.
+      operationId: post-user
+      requestBody:
+        description: Post the necessary fields for the API to create a new user.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                word:
+                  type: string
+                attribute:
+                  type: string
+                choiced:
+                  type: boolean
+              required:
+                - word
+                - attribute
+                - choiced
+            examples:
+              Create User Bob Fellow:
+                value:
+                  firstName: Bob
+                  lastName: Fellow
+                  email: bob.fellow@gmail.com
+                  dateOfBirth: '1996-08-24'
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Word'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+      servers:
+        - url: 'http://localhost:8000'
+components:
+  schemas:
+    Word:
+      type: object
+      title: User
+      properties:
+        word:
+          type: string
+      required:
+        - word
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+    Attribute:
+      type: object
+      title: Attribute
+      properties:
+        attribute:
+          type: string
+      required:
+        - attribute
